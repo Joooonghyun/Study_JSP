@@ -1,8 +1,8 @@
 package dto;
 
-import java.util.Date;
+import java.sql.Date;
 
-public class memberDTO {
+public class MemberDTO {
 	private int custno;
 	private String custname;
 	private String phone;

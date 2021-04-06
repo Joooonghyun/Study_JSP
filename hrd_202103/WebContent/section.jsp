@@ -3,7 +3,7 @@
 <%
 	String pp = request.getParameter("pp");
 if (pp == null) {
-	pp = "join";
+	pp = "main";
 }
 %>
 <!DOCTYPE html>
@@ -13,6 +13,9 @@ if (pp == null) {
 <title>Insert title here</title>
 </head>
 <body>
+<script>
+console.log("<%=pp%>");
+</script>
 	<jsp:include page='<%=pp + ".jsp"%>'></jsp:include>
 </body>
 </html>
