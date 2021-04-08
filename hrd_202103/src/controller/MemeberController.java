@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +17,7 @@ import service.MemberService;
 /**
  * Servlet implementation class MemeberController
  */
-@WebServlet("/MemeberController")
+@WebServlet(value = { "/MemeberController", "/joinMember" } )
 public class MemeberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,35 +34,50 @@ public class MemeberController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doProcess(request, response);	}
+		try {
+			doProcess(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doProcess(request, response);
+		try {
+			doProcess(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		MemberService service = new MemberService();
+		PrintWriter out = response.getWriter();
+		
 		switch (request.getServletPath()) {
-		case "join":
+		case "joinMember":
 			MemberDTO dto = new MemberDTO();
 			dto.setCustname(request.getParameter("custname"));
 			dto.setPhone(request.getParameter("phone"));
 			dto.setAddress(request.getParameter("address"));
+			dto.setJoindate(Date.valueOf(request.getParameter("joindate")));
 			dto.setGrade(request.getParameter("grade"));
 			dto.setCity(request.getParameter("city"));
 			
-			try {
-				int result = service.joinMember(dto);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			int result = service.joinMember(dto);
+			if (result > 0) {
+				response.setContentType("text/html; charset = UTF-8");
+				out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('회원가입 성공')");
+				out.println("</script>");
 			}
 			break;
 

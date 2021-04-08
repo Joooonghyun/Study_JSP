@@ -20,7 +20,7 @@ public class jdbcUtil {
 	}
 
 	public int joinMember(MemberDTO dto) {
-		String sql = "INSERT INTO MEMBER_TBL_02 VALUES(MEMBER_SEQ,?,?,?,TO_DATE('YYYY/MM/DD',?),?,?)";
+		String sql = "INSERT INTO MEMBER_TBL_02 VALUES(SEQ_NUMBER.NEXTVAL,?,?,?,?,?,?)";
 		int result = 0;
 		try {
 			pstmt = con.prepareStatement(sql);
