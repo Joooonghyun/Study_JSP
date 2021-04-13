@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import ="java.util.*" %>
+<%@ page import ="java.text.*" %>
+<%@ page import ="service.MemberService" %>
+<%
+	String todate;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+    Calendar c1 = Calendar.getInstance();
+	todate = sdf.format(c1.getTime());
+	
+	MemberService service = new MemberService();
+	String custno = service.catchSeqNumber();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +24,7 @@
 		<table>
 			<tr>
 				<td>회원번호 (자동 발생)</td>
-				<td><input type="text" name="custno" id="custno"></td>
+				<td><input type="text" name="custno" id="custno" value="<%=custno%>"></td>
 			</tr>
 			<tr>
 				<td>회원 성명</td>
@@ -28,7 +40,8 @@
 			</tr>
 			<tr>
 				<td>가입 일자</td>
-				<td><input type="text" name="joindate" id="joindate"></td>
+				<td><input type="text" name="joindate" id="joindate"
+					value="<%=todate%>"></td>
 			</tr>
 			<tr>
 				<td>고객 등급 [A:VIP, B:일반, C:직원]</td>
@@ -52,7 +65,7 @@
 			var joindate = document.getElementById("joindate");
 			var grade = document.getElementById("grade");
 			var city = document.getElementById("city");
-			
+
 			if (custname.value == "") {
 				alert("이름을 입력해 주세요.");
 				custname.focus();

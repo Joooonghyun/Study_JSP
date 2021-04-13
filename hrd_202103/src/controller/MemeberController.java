@@ -62,7 +62,7 @@ public class MemeberController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		switch (request.getServletPath()) {
-		case "joinMember":
+		case "/joinMember":
 			MemberDTO dto = new MemberDTO();
 			dto.setCustname(request.getParameter("custname"));
 			dto.setPhone(request.getParameter("phone"));
@@ -70,17 +70,21 @@ public class MemeberController extends HttpServlet {
 			dto.setJoindate(Date.valueOf(request.getParameter("joindate")));
 			dto.setGrade(request.getParameter("grade"));
 			dto.setCity(request.getParameter("city"));
-			
+
 			int result = service.joinMember(dto);
+			System.out.println(result);
 			if (result > 0) {
 				response.setContentType("text/html; charset = UTF-8");
 				out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('회원가입 성공')");
+				out.println("location.href='index.jsp'");
 				out.println("</script>");
 			}
 			break;
-
+		case "":
+			
+			break;
 		}
 	}
 }

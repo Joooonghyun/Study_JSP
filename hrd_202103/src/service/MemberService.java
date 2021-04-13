@@ -1,18 +1,25 @@
 package service;
 
-import static DBPKG.jdbcUtil.getConnection;
-
 import java.sql.Connection;
-
-import DBPKG.jdbcUtil;
+import static DBPKG.jdbcUtil.*;
+import dao.MemberDAO;
 import dto.MemberDTO;
 
 public class MemberService {
-	jdbcUtil dao = new jdbcUtil();
 
 	public int joinMember(MemberDTO dto) throws Exception {
+		MemberDAO dao = MemberDAO.getInstance();
 		Connection con = getConnection();
+		dao.setConnection(con);
 		int result = dao.joinMember(dto);
+		return result;
+	}
+
+	public String catchSeqNumber() throws Exception {
+		MemberDAO dao = MemberDAO.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		String result = dao.catchSeqNumber();
 		return result;
 	}
 }
