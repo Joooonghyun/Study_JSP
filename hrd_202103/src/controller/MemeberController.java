@@ -17,7 +17,7 @@ import service.MemberService;
 /**
  * Servlet implementation class MemeberController
  */
-@WebServlet(value = { "/MemeberController", "/joinMember" } )
+@WebServlet(value = { "/joinMember", "/viewMember" } )
 public class MemeberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -64,25 +64,30 @@ public class MemeberController extends HttpServlet {
 		switch (request.getServletPath()) {
 		case "/joinMember":
 			MemberDTO dto = new MemberDTO();
+			dto.setCustno(Integer.parseInt(request.getParameter("custno")));;
 			dto.setCustname(request.getParameter("custname"));
 			dto.setPhone(request.getParameter("phone"));
 			dto.setAddress(request.getParameter("address"));
-			dto.setJoindate(Date.valueOf(request.getParameter("joindate")));
+//			java.util.Date 을 java.sql.Date 변환 후 dto에 저장
+			java.util.Date todate = new java.text.SimpleDateFormat("yyyyMMdd").parse(request.getParameter("joindate"));
+			java.sql.Date joindate = new java.sql.Date(todate.getTime());
+			dto.setJoindate(joindate);
 			dto.setGrade(request.getParameter("grade"));
 			dto.setCity(request.getParameter("city"));
-
+			System.out.println(dto); //dto 출력
 			int result = service.joinMember(dto);
 			System.out.println(result);
+			
 			if (result > 0) {
-				response.setContentType("text/html; charset = UTF-8");
+				response.setContentType("text/html; charset=utf-8");
 				out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('회원가입 성공')");
-				out.println("location.href='index.jsp'");
+				out.println("location.href='join.jsp'");
 				out.println("</script>");
 			}
 			break;
-		case "":
+		case "/viewMember": //회원목록조회/수정
 			
 			break;
 		}

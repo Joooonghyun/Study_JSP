@@ -9,10 +9,10 @@
 <body>
 	<table>
 		<tr>
-			<td>회원등록</td>
-			<td>회원목록 조회/수정</td>
-			<td>회원매출조회</td>
-			<td>홈으로</td>
+			<td><a href="join.jsp">회원등록</a></td>
+			<td><a href="memberView.jsp">회원목록 조회/수정</a></td>
+			<td><a href="salesView.jsp">회원매출조회</a></td>
+			<td><a href="index.jsp">홈으로</a></td>
 		</tr>
 	</table>
 </body>

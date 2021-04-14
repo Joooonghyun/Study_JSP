@@ -27,16 +27,17 @@ public class MemberDAO {
 	}
 
 	public int joinMember(MemberDTO dto) {
-		String sql = "INSERT INTO MEMBER_TBL_02 VALUES(SEQ_NUMBER.NEXTVAL,?,?,?,?,?,?)";
+		String sql = "INSERT INTO MEMBER_TBL_02 VALUES(?,?,?,?,?,?,?)";
 		int result = 0;
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, dto.getCustname());
-			pstmt.setString(2, dto.getPhone());
-			pstmt.setString(3, dto.getAddress());
-			pstmt.setDate(4, dto.getJoindate());
-			pstmt.setString(5, dto.getGrade());
-			pstmt.setString(6, dto.getCity());
+			pstmt.setInt(1, dto.getCustno());
+			pstmt.setString(2, dto.getCustname());
+			pstmt.setString(3, dto.getPhone());
+			pstmt.setString(4, dto.getAddress());
+			pstmt.setDate(5, dto.getJoindate());
+			pstmt.setString(6, dto.getGrade());
+			pstmt.setString(7, dto.getCity());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

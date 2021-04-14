@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import ="java.util.*" %>
-<%@ page import ="java.text.*" %>
-<%@ page import ="service.MemberService" %>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.*"%>
+<%@ page import="service.MemberService"%>
 <%
 	String todate;
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-    Calendar c1 = Calendar.getInstance();
+	Calendar c1 = Calendar.getInstance();
 	todate = sdf.format(c1.getTime());
-	
 	MemberService service = new MemberService();
 	String custno = service.catchSeqNumber();
 %>
@@ -19,6 +18,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="top.jsp"></jsp:include>
+	<jsp:include page="nav.jsp"></jsp:include>
 	<h1>홈쇼핑 회원 등록</h1>
 	<form action="joinMember" method="post" id="join">
 		<table>
@@ -52,11 +53,11 @@
 				<td><input type="text" name="city" id="city"></td>
 			</tr>
 			<tr>
-				<td><input type="button" value="등록" onclick="Join()"><input
-					type="button" value="조회"></td>
+				<td><input type="button" value="등록" onclick="Join()"><input type="button" value="조회" onclick="location.href='memberView.jsp'"></td>
 			</tr>
 		</table>
 	</form>
+	<jsp:include page="footer.jsp"></jsp:include>
 	<script type="text/javascript">
 		function Join() {
 			var custname = document.getElementById("custname");
