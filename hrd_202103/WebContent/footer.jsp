@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<center>Mollang 21.04.14 ver2.4</center>
+	<center>Mollang 21.04.16 ver3.0</center>
 </body>
 </html>

@@ -17,7 +17,7 @@ import service.MemberService;
 /**
  * Servlet implementation class MemeberController
  */
-@WebServlet(value = { "/joinMember", "/viewMember" } )
+@WebServlet(value = { "/joinMember" } )
 public class MemeberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -79,16 +79,13 @@ public class MemeberController extends HttpServlet {
 			System.out.println(result);
 			
 			if (result > 0) {
-				response.setContentType("text/html; charset=utf-8");
+				response.setContentType("text/html; charset=UTF-8");
 				out = response.getWriter();
 				out.println("<script>");
-				out.println("alert('회원가입 성공')");
+				out.println("alert('회원등록이 완료 되었습니다.')");
 				out.println("location.href='join.jsp'");
 				out.println("</script>");
 			}
-			break;
-		case "/viewMember": //회원목록조회/수정
-			
 			break;
 		}
 	}

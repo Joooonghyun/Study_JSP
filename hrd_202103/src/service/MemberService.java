@@ -1,7 +1,10 @@
 package service;
 
-import java.sql.Connection;
-import static DBPKG.jdbcUtil.*;
+import static DBPKG.jdbcUtil.getConnection;
+
+import java.sql.*;
+import java.util.*;
+
 import dao.MemberDAO;
 import dto.MemberDTO;
 
@@ -20,6 +23,14 @@ public class MemberService {
 		Connection con = getConnection();
 		dao.setConnection(con);
 		String result = dao.catchSeqNumber();
+		return result;
+	}
+	
+	public List memberView() throws Exception {
+		MemberDAO dao = MemberDAO.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		List result = dao.memberView();
 		return result;
 	}
 }

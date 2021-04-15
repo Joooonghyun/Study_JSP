@@ -8,7 +8,7 @@
 </head>
 <body>
 	<center>
-		<h1>쇼핑몰 회원관리 ver1.0</h1>
+		<h1>쇼핑몰 회원관리 ver3.0</h1>
 	</center>
 </body>
 </html>

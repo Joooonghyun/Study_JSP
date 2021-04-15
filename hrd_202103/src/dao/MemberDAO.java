@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.*;
+
 import dto.MemberDTO;
 
 public class MemberDAO {
@@ -54,6 +56,31 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				result = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public List memberView() {
+		String sql = "SELECT * FROM MEMBER_TBL_02";
+		List result = new ArrayList();
+		MemberDTO dto = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				dto = new MemberDTO();
+				dto.setCustno(rs.getInt(1));
+				dto.setCustname(rs.getString(2));
+				dto.setPhone(rs.getString(3));
+				dto.setAddress(rs.getString(4));
+				dto.setJoindate(rs.getDate(5));
+				dto.setGrade(rs.getString(6));
+				dto.setCity(rs.getString(7));
+				result.add(dto);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
