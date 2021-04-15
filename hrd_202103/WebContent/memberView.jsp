@@ -36,11 +36,18 @@
 			String phone = dto.getPhone();
 			String address = dto.getAddress();
 			Date joindate = dto.getJoindate();
-			String grade = dto.getGrade();
+			String grade = null;
+			if(dto.getGrade().equals("A")){
+			grade = "VIP";
+			}else if(dto.getGrade().equals("B")){
+			grade = "일반";	
+			}else if(dto.getGrade().equals("C")){
+			grade = "고객";	
+			}
 			String city = dto.getCity();
 		%>
 		<tr>
-			<td><%=custno%></td>
+			<td><a href=""><%=custno%></a></td>
 			<td><%=custname%></td>
 			<td><%=phone%></td>
 			<td><%=address%></td>

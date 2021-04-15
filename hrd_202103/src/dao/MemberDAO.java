@@ -65,7 +65,7 @@ public class MemberDAO {
 	}
 
 	public List memberView() {
-		String sql = "SELECT * FROM MEMBER_TBL_02";
+		String sql = "SELECT * FROM MEMBER_TBL_02 ORDER BY CUSTNO ASC";
 		List result = new ArrayList();
 		MemberDTO dto = null;
 		try {
