@@ -25,12 +25,20 @@ public class MemberService {
 		String result = dao.catchSeqNumber();
 		return result;
 	}
-	
+
 	public List memberView() throws Exception {
 		MemberDAO dao = MemberDAO.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
 		List result = dao.memberView();
+		return result;
+	}
+
+	public List salesView() throws Exception {
+		MemberDAO dao = MemberDAO.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		List result = dao.salesView();
 		return result;
 	}
 }

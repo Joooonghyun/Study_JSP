@@ -10,11 +10,13 @@ public class MemberDTO {
 	private Date joindate;
 	private String grade;
 	private String city;
+	private int Money_tbl_Price;
 
 	@Override
 	public String toString() {
-		return "memberDTO [custno=" + custno + ", custname=" + custname + ", phone=" + phone + ", address=" + address
-				+ ", joindate=" + joindate + ", grade=" + grade + ", city=" + city + "]";
+		return "MemberDTO [custno=" + custno + ", custname=" + custname + ", phone=" + phone + ", address=" + address
+				+ ", joindate=" + joindate + ", grade=" + grade + ", city=" + city + ", Money_tbl_Price="
+				+ Money_tbl_Price + "]";
 	}
 
 	public int getCustno() {
@@ -72,4 +74,13 @@ public class MemberDTO {
 	public void setCity(String city) {
 		this.city = city;
 	}
+
+	public int getMoney_tbl_Price() {
+		return Money_tbl_Price;
+	}
+
+	public void setMoney_tbl_Price(int money_tbl_Price) {
+		Money_tbl_Price = money_tbl_Price;
+	}
+
 }

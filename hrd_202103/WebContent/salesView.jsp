@@ -4,7 +4,7 @@
 	import="dto.MemberDTO"%>
 <%
 	MemberService service = new MemberService();
-List list = service.memberView();
+	List list = service.salesView();
 %>
 <!DOCTYPE html>
 <html>
@@ -19,11 +19,8 @@ List list = service.memberView();
 		<tr>
 			<td>회원번호</td>
 			<td>회원성명</td>
-			<td>전화번호</td>
-			<td>주소</td>
-			<td>가입일자</td>
 			<td>고객등급</td>
-			<td>거주지역</td>
+			<td>매출</td>
 		</tr>
 		<%
 			for (int i = 0; i < list.size(); i++) {
@@ -33,9 +30,6 @@ List list = service.memberView();
 
 			int custno = dto.getCustno();
 			String custname = dto.getCustname();
-			String phone = dto.getPhone();
-			String address = dto.getAddress();
-			Date joindate = dto.getJoindate();
 			String grade = null;
 			if (dto.getGrade().equals("A")) {
 				grade = "VIP";
@@ -44,16 +38,13 @@ List list = service.memberView();
 			} else if (dto.getGrade().equals("C")) {
 				grade = "고객";
 			}
-			String city = dto.getCity();
+			int price = dto.getMoney_tbl_Price();
 		%>
 		<tr>
-			<td><a href=""><%=custno%></a></td>
+			<td><%=custno%></td>
 			<td><%=custname%></td>
-			<td><%=phone%></td>
-			<td><%=address%></td>
-			<td><%=joindate%></td>
 			<td><%=grade%></td>
-			<td><%=city%></td>
+			<td><%=price%></td>
 		</tr>
 		<%
 			}

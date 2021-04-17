@@ -89,4 +89,25 @@ public class MemberDAO {
 		return result;
 	}
 
+	public List salesView() {
+		String sql = "SELECT M.CUSTNO, M.CUSTNAME, M.GRADE, SUM(N.PRICE) AS TOTAL FROM MEMBER_TBL_02 M JOIN MONEY_TBL_02 N ON M.CUSTNO = N.CUSTNO GROUP BY(M.CUSTNO, M.CUSTNAME, M.GRADE) ORDER BY TOTAL DESC";
+		List result = new ArrayList();
+		MemberDTO dto = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				dto = new MemberDTO();
+				dto.setCustno(rs.getInt(1));
+				dto.setCustname(rs.getString(2));
+				dto.setGrade(rs.getString(3));
+				dto.setMoney_tbl_Price(rs.getInt(4));
+				result.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
